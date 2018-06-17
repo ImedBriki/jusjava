@@ -20,13 +20,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * this method to display text on the screen
+     */
+    private void displayMessage(String message){
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
+    }
+
+    /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        displayPrice(quantity*5);
+        int price = quantity*5;
+        String priceMessage = "Total: €" + price + "\nthank you!";
+        displayMessage(priceMessage);
     }
 
     int quantity = 2;
+
     /**
      * This method to increment.
      */
@@ -34,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         quantity = quantity + 1;
         display(quantity);
     }
+
     /**
      * This method to decrement.
      */
@@ -43,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             display(quantity);
         }
     }
+
     /**
      * This method displays the given quantity value on the screen.
      */
