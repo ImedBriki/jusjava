@@ -23,16 +23,35 @@ public class MainActivity extends AppCompatActivity {
      * this method to display text on the screen
      */
     private void displayMessage(String message){
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
+    }
+    /**
+     * Calculates the price of the order based on the current quantity.
+     *
+     * @return the price
+     */
+    private int calculatePrice(int quantity) {
+        int price = quantity * 5;
+        return price;
+    }
+    /**
+     * This method is called to display order message.
+     */
+    public String createOrderSummary(int price){
+        String msg = "Name: Kaptain Kunal" + "\n Quantity: " + quantity + "\nTotal:$ " + quantity*price + "\n thank you!";
+        return msg;
+
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = quantity*5;
-        String priceMessage = "Total: €" + price + "\nthank you!";
+        //int price = quantity*5;
+        //int price = calculatePrice(quantity);
+        String priceMessage = createOrderSummary(5);
+       // String priceMessage = "Total: €" + price + "\nthank you!";
         displayMessage(priceMessage);
     }
 
@@ -67,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given price on the screen.
      */
     private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
 }
