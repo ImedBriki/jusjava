@@ -3,7 +3,9 @@ package com.example.android.jusjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -38,8 +40,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called to display order message.
      */
-    public String createOrderSummary(int price){
-        String msg = "Name: Kaptain Kunal" + "\n Quantity: " + quantity + "\nTotal:$ " + quantity*price + "\n thank you!";
+    public String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChoclate){
+        String msg = "Name: Kaptain Kunal" + "\n Quantity: " + quantity + "\nTotal:$ " + quantity*price;
+        msg += "\nAdd WhippedCream? " + hasWhippedCream;
+        msg += "\nAdd Chocolate? " + hasChoclate;
+        msg += "\n thank you!";
         return msg;
 
     }
@@ -48,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        //int price = quantity*5;
-        //int price = calculatePrice(quantity);
-        String priceMessage = createOrderSummary(5);
-       // String priceMessage = "Total: €" + price + "\nthank you!";
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        CheckBox choclateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+        boolean hasChoclate = choclateCheckBox.isChecked();
+        String priceMessage = createOrderSummary(5, hasWhippedCream, hasChoclate);
         displayMessage(priceMessage);
     }
 
