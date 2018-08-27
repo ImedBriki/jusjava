@@ -34,9 +34,17 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return the price
      */
-    private int calculatePrice(int quantity) {
-        int price = quantity * 5;
-        return price;
+    private int calculatePrice(boolean addWhippedCream, boolean addChocolate) {
+        int basePrice = 5;
+        if (addWhippedCream){
+            basePrice += 1;
+        }
+
+        if (addChocolate){
+            basePrice += 2;
+        }
+
+        return basePrice * quantity;
     }
 
     /**
@@ -44,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChoclate, String name){
 
-        String msg = "Name: " + name  + "\n Quantity: " + quantity + "\nTotal:$ " + quantity*price;
+        String msg = "Name: " + name  + "\n Quantity: " + quantity + "\nTotal:$ " + price;
         msg += "\nAdd WhippedCream? " + hasWhippedCream;
         msg += "\nAdd Chocolate? " + hasChoclate;
         msg += "\n thank you!";
@@ -62,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
         CheckBox choclateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
         boolean hasChoclate = choclateCheckBox.isChecked();
-        String priceMessage = createOrderSummary(5, hasWhippedCream, hasChoclate, name);
+        int price = calculatePrice(hasWhippedCream, hasChoclate);
+        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChoclate, name);
         displayMessage(priceMessage);
     }
 
