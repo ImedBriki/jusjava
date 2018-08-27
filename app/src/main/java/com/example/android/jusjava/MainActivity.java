@@ -1,6 +1,8 @@
 
 package com.example.android.jusjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        EditText nameField = (EditText)findViewById(R.id.name_filed);
+       /* EditText nameField = (EditText)findViewById(R.id.name_filed);
         String name= nameField .getText().toString();
         CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
         CheckBox choclateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
@@ -73,7 +75,13 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChoclate = choclateCheckBox.isChecked();
         int price = calculatePrice(hasWhippedCream, hasChoclate);
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChoclate, name);
-        displayMessage(priceMessage);
+        displayMessage(priceMessage); */
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("geo:36.7948624, 10.0732372"));
+        if(intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     int quantity = 2;
